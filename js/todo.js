@@ -4,7 +4,7 @@ const toDoList = document.getElementById("todo-list");
 
 const TODOS_KEY = "todos";
 
-const toDos = [];
+let toDos = [];
 
 function saveToDos() {
   //localStorage안에는 배열은 저장되지 않고 텍스트만 저장되기 때문에
@@ -17,12 +17,16 @@ function deleteToDo(event) {
   //버튼의 부모인 li를 제거
   const li = event.target.parentElement;
   li.remove();
+  //클릭한
+  toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+  saveToDos();
 }
 
 function paintToDo(newTodo) {
   const li = document.createElement("li");
+  li.id = newTodo.id;
   const span = document.createElement("span");
-  span.innerText = newTodo;
+  span.innerText = newTodo.text;
   const btn = document.createElement("button");
   btn.innerText = "❌";
   //버튼을 클릭했을때
@@ -36,8 +40,12 @@ function handleToDoSubmit(event) {
   event.preventDefault();
   const newTodo = toDoInput.value;
   toDoInput.value = "";
-  toDos.push(newTodo);
-  paintToDo(newTodo);
+  const newTodoObj = {
+    text: newTodo,
+    id: Date.now(),
+  };
+  toDos.push(newTodoObj);
+  paintToDo(newTodoObj);
   saveToDos();
 }
 
@@ -46,6 +54,11 @@ toDoForm.addEventListener("submit", handleToDoSubmit);
 const savedToDos = localStorage.getItem(TODOS_KEY);
 
 if (savedToDos !== null) {
-  const parseToDos = JSON.parse(saveToDos);
-  parseToDos.forEach((item) => {});
+  const parsedToDos = JSON.parse(savedToDos);
+  toDos = parsedToDos;
+  parsedToDos.forEach(paintToDo);
+}
+//지우고 싶은 아이템을 제외하고 배열을 만든다
+function sexyFilter(item) {
+  //반드시 true여야함
 }
