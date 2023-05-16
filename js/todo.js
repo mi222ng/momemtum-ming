@@ -58,7 +58,3 @@ if (savedToDos !== null) {
   toDos = parsedToDos;
   parsedToDos.forEach(paintToDo);
 }
-//지우고 싶은 아이템을 제외하고 배열을 만든다
-function sexyFilter(item) {
-  //반드시 true여야함
-}
