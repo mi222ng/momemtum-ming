@@ -6,5 +6,5 @@
 - Clock
 - Todo list
 - weather(icon/location)
-- Quote(landom)
-- background(landom)
+- Quote(random)
+- background(random)
