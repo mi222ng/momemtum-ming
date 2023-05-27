@@ -1,5 +1,5 @@
 ### chrome style app project
-[Go URL](https://mi222ng.github.io/momemtum-ming/)
+[Go URL](https://mi222ng.github.io/momemtum-ming/){:target="_blank"}
 
 ### Function
 - Login(local storage)
